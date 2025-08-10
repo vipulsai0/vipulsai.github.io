@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vipulsai Atmakuri — Portfolio</title>
+  <style>
+    /* Base */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #0b0b0c; color: #e7e7ea; font-family: 'Segoe UI', Arial, sans-serif; }
+    a { color: #7f9cff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    :root{
+      --bg:#0b0b0c;
+      --panel:#141417;
+      --panel2:#111116;
+      --text:#e7e7ea;
+      --muted:#b6b6c2;
+      --accent1:#ff3c38;
+      --accent2:#2196f3;
+      --accent3:#8b5cf6;
+      --accent4:#10b981;
+      --line:#1e1f25;
+      --chip:#1c1c22;
+    }
+
+    /* Icon base (inline SVG wrappers) */
+    .icon {
+      width: 18px; height: 18px; vertical-align: -3px; margin-right: 6px; fill: currentColor; display: inline-block;
+    }
+
+    /* Header */
+    .topbar{
+      position: sticky; top: 0; z-index: 1000;
+      background: linear-gradient(180deg, #0b0b0c 0%, #0b0b0cE6 60%, #0b0b0c00 100%);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+      backdrop-filter: blur(4px);
+    }
+    .wrap{ max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .brand{
+      display:flex; align-items:center; justify-content:space-between; gap: 16px;
+    }
+    .brand .name{ font-size: 20px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+    .brand .links a{ margin-left: 16px; font-weight: 600; color:#bfc7ff; }
+    .brand .links a:hover{ color:#fff; }
+
+    /* Hero */
+    .hero{
+      border-top: 1px solid var(--line);
+      background: radial-gradient(1200px 500px at 70% -10%, #1b1b25 0%, #0b0b0c 70%);
+      padding: 56px 0 24px;
+    }
+    .hero-inner{
+      display:grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items:center;
+    }
+    .headline{
+      padding: 28px; background: var(--panel); border: 1px solid var(--line);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
+    .headline h1{ margin:0 0 8px; font-size: 36px; font-weight: 900; letter-spacing: 1px; }
+    .headline .role{ color:#c6c6d3; font-size: 18px; margin-bottom: 18px; }
+    .headline p{ margin: 0 0 6px; color:#d7d7df; }
+    .cta{ display:flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .btn{
+      padding: 10px 16px; border: 2px solid var(--accent2); color:#fff; background: transparent; text-transform: uppercase; font-weight: 800;
+      letter-spacing: 0.08em; cursor:pointer; transition: .25s; border-radius:0;
+    }
+    .btn.primary{ background: linear-gradient(90deg, var(--accent2), var(--accent3)); border: none; }
+    .btn:hover{ transform: translateY(-2px); filter: brightness(1.1); }
+
+    .hero-cards{
+      display:grid; gap: 16px;
+    }
+    .card{
+      background: var(--panel2); border: 1px solid var(--line); padding: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    .card h3{ margin:0 0 8px; font-size: 16px; text-transform: uppercase; letter-spacing: .12em; color:#cfd4ff; }
+    .stat{ display:flex; gap: 14px; flex-wrap: wrap; }
+    .chip{ background: var(--chip); border: 1px solid var(--line); padding: 6px 10px; font-size: 13px; font-weight: 700; color:#d7d7e2; text-transform: uppercase; }
+
+    /* Sections */
+    section{ padding: 30px 0; border-top: 1px solid var(--line); }
+    .section-header{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom: 14px; }
+    .section-header h2{ margin:0; font-size: 20px; text-transform: uppercase; letter-spacing: .12em; background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .section-sub{ color: var(--muted); font-size: 14px; }
+
+    /* Grids & panels */
+    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    .panel{ background: var(--panel); border:1px solid var(--line); padding: 16px; }
+    .panel h3{ margin:0 0 8px; font-size: 16px; color:#dfe3ff; }
+    .panel p{ margin: 6px 0 0; color:#cfcfd8; }
+    .list{ margin: 8px 0 0; padding-left: 18px; color:#cfcfd8; }
+    .list li{ margin: 6px 0; }
+
+    /* Timeline style */
+    .timeline{ position: relative; padding-left: 18px; }
+    .timeline::before{ content:""; position:absolute; left: 8px; top: 0; bottom: 0; width:2px; background:#23232c; }
+    .tl-item{ position:relative; margin: 12px 0 16px; }
+    .tl-item::before{ content:""; position:absolute; left:-1px; top:4px; width:10px; height:10px; background: linear-gradient(90deg,var(--accent1),var(--accent2)); }
+    .tl-title{ font-weight:800; color:#f2f2ff; }
+    .tl-meta{ font-size:12px; color:#a9a9b5; margin-top:2px; }
+
+    /* Tags cloud */
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+    .tag{ background:#17171d; border:1px solid #242432; color:#dcdcef; padding:6px 10px; font-size:12px; font-weight:700; text-transform:uppercase; }
+
+    /* Accent animation */
+    .accent-ring{
+      position: fixed; inset: 0; pointer-events:none; opacity:.15;
+      background: radial-gradient(500px 180px at 10% 10%, #3b82f6 0%, transparent 60%),
+                  radial-gradient(600px 220px at 90% 15%, #f43f5e 0%, transparent 60%),
+                  radial-gradient(600px 220px at 30% 85%, #22c55e 0%, transparent 60%);
+      z-index: 0;
+      animation: pulse 10s ease-in-out infinite alternate;
+    }
+    @keyframes pulse{
+      0%{ filter: blur(28px); transform: scale(1);}
+      100%{ filter: blur(18px); transform: scale(1.06);}
+    }
+
+    /* Footer */
+    footer{ padding: 28px 0 40px; border-top: 1px solid var(--line); color:#bdbdd0; }
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="accent-ring"></div>
+
+  <div class="topbar">
+    <div class="wrap brand">
+      <div class="name">Vipulsai Atmakuri</div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#internships">Internships</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#profiles">Profiles</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero" id="about">
+    <div class="wrap hero-inner">
+      <div class="headline">
+        <h1>VIPUL SAI ATMAKURI</h1>
+        <div class="role">Fresher • CSE Undergraduate • Web • Data • ML</div>
+        <p>I’m a motivated fresher focusing on full‑stack development and applied machine learning. I learn quickly, communicate clearly, and enjoy building practical solutions with clean, maintainable code.</p>
+        <p>I’d be grateful for the opportunity to contribute, keep learning, and grow with a supportive team.</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:vipulsai19@gmail.com?subject=Opportunity%20for%20Internship%20or%20Entry-Level%20Role&body=Hi%20Vipulsai,%0D%0A%0D%0A">
+            <span class="icon" aria-hidden="true">
+              <!-- Email SVG -->
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+            </span>
+            Email Me
+          </a>
+          <a class="btn" href="https://github.com/Vipulsai0" target="_blank" rel="noopener">
+            <span class="icon" aria-hidden="true">
+              <!-- GitHub SVG -->
+              <svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.24 3.4 9.68 8.12 11.26.6.12.82-.26.82-.58 0-.28-.02-1.04-.02-2.04-3.3.72-4-1.6-4-1.6-.54-1.4-1.32-1.78-1.32-1.78-1.08-.74.08-.72.08-.72 1.2.08 1.84 1.26 1.84 1.26 1.06 1.84 2.78 1.3 3.46 1 .1-.78.42-1.3.76-1.6-2.64-.3-5.42-1.34-5.42-5.98 0-1.32.46-2.4 1.24-3.26-.12-.3-.54-1.54.12-3.2 0 0 1-.32 3.28 1.24.96-.26 2-.4 3.02-.4 1.02 0 2.06.14 3.02.4C18.5 5.5 19.5 5.82 19.5 5.82c.66 1.66.24 2.9.12 3.2.78.86 1.24 1.94 1.24 3.26 0 4.66-2.8 5.68-5.46 5.98.44.38.82 1.1.82 2.24 0 1.62-.02 2.92-.02 3.32 0 .32.22.72.84.58A11.5 11.5 0 0 0 23.5 12.3 11.5 11.5 0 0 0 12 .5Z"/></svg>
+            </span>
+            GitHub
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/vipulsai/" target="_blank" rel="noopener">
+            <span class="icon" aria-hidden="true">
+              <!-- LinkedIn SVG -->
+              <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5 2.5 2.5 0 0 1 4.98 3.5ZM3 9h4v12H3Zm7 0h3.8v1.7h.06c.53-1 1.82-2.06 3.75-2.06 4 0 4.7 2.6 4.7 6V21H19v-4.8c0-1.15 0-2.64-1.6-2.64-1.6 0-1.85 1.25-1.85 2.55V21H12Z"/></svg>
+            </span>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-cards">
+        <div class="card">
+          <h3>Tech Focus</h3>
+          <div class="stat">
+            <span class="chip">Web: HTML · CSS · JS · Flask · Django</span>
+            <span class="chip">ML: Python · TensorFlow · Keras · Sklearn</span>
+            <span class="chip">Data: Pandas · NumPy · Matplotlib</span>
+            <span class="chip">Core: C++ · Java · SQL</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Profile Snapshot</h3>
+          <ul class="list">
+            <li>Computer Science Engineering — Vardhaman College of Engineering</li>
+            <li>Actively seeking internships and entry‑level software roles</li>
+            <li>Hands‑on academic/personal projects (CNNs, EDA, full‑stack)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Availability</h3>
+          <ul class="list">
+            <li>Open to internships and full‑time fresher roles</li>
+            <li>Flexible with tech stack; eager to learn on the job</li>
+            <li>Respectful collaborator with a growth mindset</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="internships">
+    <div class="wrap">
+      <div class="section-header">
+        <h2>Internships</h2>
+        <div class="section-sub">Academic and early professional engagements</div>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Web Development Intern — CodersCave</h3>
+          <ul class="list">
+            <li>Built responsive UIs (including a Netflix‑inspired interface) using HTML/CSS/JS.</li>
+            <li>Developed tools like an online code editor and URL shortener with Flask.</li>
+            <li>Practiced accessibility and performance‑minded frontend structure.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Flask</span><span class="tag">Git</span>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Data Science Intern — Oasis Infobyte</h3>
+          <ul class="list">
+            <li>Implemented ML mini‑pipelines: Iris classification, spam detection, sales prediction.</li>
+            <li>Performed EDA using Pandas/NumPy and visualized insights with Matplotlib.</li>
+            <li>Compared baseline models and validated performance with cross‑validation.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Sklearn</span><span class="tag">Matplotlib</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px;">
+        <h3>Timeline</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-title">CSE — Vardhaman College</div>
+            <div class="tl-meta">Core CS foundations · Algorithms · Systems · Networks</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-title">CodersCave · Web Development Internship</div>
+            <div class="tl-meta">UI engineering · Flask tools · Frontend systems</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-title">Oasis Infobyte · Data Science Internship</div>
+            <div class="tl-meta">EDA · Model evaluation · Practical ML</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-header">
+        <h2>Projects</h2>
+        <div class="section-sub">Hands‑on work from academics and practice</div>
+      </div>
+      <div class="grid-3">
+        <div class="panel">
+          <h3>Image‑Based Species Recognition</h3>
+          <p>End‑to‑end CNN using Keras/TensorFlow for image classification.</p>
+          <ul class="list">
+            <li>Preprocessing and augmentation for robust training.</li>
+            <li>Regularized CNN with callbacks; evaluated with class metrics.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Crop Prediction Website</h3>
+          <p>Predicts suitable crops from climate and soil attributes via a simple ML backend.</p>
+          <ul class="list">
+            <li>Form‑based UX backed by a trained classifier API.</li>
+            <li>Feature engineering and model persistence for fast inference.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Flask</span><span class="tag">Sklearn</span><span class="tag">Pandas</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>ChatBot Assistance System (In Progress)</h3>
+          <p>Django/Python bot for technical query support and quick knowledge surfacing.</p>
+          <ul class="list">
+            <li>Intent routing with modular responses.</li>
+            <li>Admin UI for content updates and usage analytics.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">Django</span><span class="tag">Python</span><span class="tag">APIs</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px;">
+        <h3>Additional Highlights</h3>
+        <ul class="list">
+          <li>Reusable UI components for faster prototyping.</li>
+          <li>Data scripts for EDA, cleaning, and quick plotting.</li>
+          <li>Experiment logs for consistent ML iteration.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-header">
+        <h2>Skills</h2>
+        <div class="section-sub">Languages, frameworks, and tooling</div>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Programming & Data</h3>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">SQL</span>
+            <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span>
+          </div>
+          <ul class="list">
+            <li>Data ingestion, cleaning, transformation, and reporting.</li>
+            <li>Algorithmic thinking for efficient solutions.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Web & ML</h3>
+          <div class="tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+            <span class="tag">Flask</span><span class="tag">Django</span>
+            <span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">Sklearn</span>
+          </div>
+          <ul class="list">
+            <li>RESTful design, SSR, and simple API endpoints.</li>
+            <li>Model training, evaluation, and lightweight deployment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px;">
+        <h3>Strengths as a Fresher</h3>
+        <ul class="list">
+          <li>Quick learner with a respectful, team‑first approach.</li>
+          <li>Clean, readable code and willingness to iterate with feedback.</li>
+          <li>Consistent, reliable, and eager to contribute.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="wrap">
+      <div class="section-header">
+        <h2>Certifications</h2>
+        <div class="section-sub">Foundational training and simulations</div>
+      </div>
+      <div class="grid-3">
+        <div class="panel">
+          <h3>J.P. Morgan Chase & Co. — Forage</h3>
+          <p>Job Simulation covering Python, React, and data visualization basics.</p>
+        </div>
+        <div class="panel">
+          <h3>Google Cloud — Foundational Training</h3>
+          <p>Compute Engine, Cloud Storage, and app deployment fundamentals.</p>
+        </div>
+        <div class="panel">
+          <h3>MongoDB — Intro for Students</h3>
+          <p>Document modeling, CRUD operations, and practical query patterns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="profiles">
+    <div class="wrap">
+      <div class="section-header">
+        <h2>Profiles</h2>
+        <div class="section-sub">See work, solve problems, and connect</div>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Developer Accounts</h3>
+          <ul class="list">
+            <li>
+              <a href="https://github.com/Vipulsai0" target="_blank" rel="noopener">
+                <span class="icon" aria-hidden="true">
+                  <!-- GitHub SVG -->
+                  <svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.24 3.4 9.68 8.12 11.26.6.12.82-.26.82-.58 0-.28-.02-1.04-.02-2.04-3.3.72-4-1.6-4-1.6-.54-1.4-1.32-1.78-1.32-1.78-1.08-.74.08-.72.08-.72 1.2.08 1.84 1.26 1.84 1.26 1.06 1.84 2.78 1.3 3.46 1 .1-.78.42-1.3.76-1.6-2.64-.3-5.42-1.34-5.42-5.98 0-1.32.46-2.4 1.24-3.26-.12-.3-.54-1.54.12-3.2 0 0 1-.32 3.28 1.24.96-.26 2-.4 3.02-.4 1.02 0 2.06.14 3.02.4C18.5 5.5 19.5 5.82 19.5 5.82c.66 1.66.24 2.9.12 3.2.78.86 1.24 1.94 1.24 3.26 0 4.66-2.8 5.68-5.46 5.98.44.38.82 1.1.82 2.24 0 1.62-.02 2.92-.02 3.32 0 .32.22.72.84.58A11.5 11.5 0 0 0 23.5 12.3 11.5 11.5 0 0 0 12 .5Z"/></svg>
+                </span>
+                GitHub: Vipulsai0
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/vipulsai/" target="_blank" rel="noopener">
+                <span class="icon" aria-hidden="true">
+                  <!-- LinkedIn SVG -->
+                  <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5 2.5 2.5 0 0 1 4.98 3.5ZM3 9h4v12H3Zm7 0h3.8v1.7h.06c.53-1 1.82-2.06 3.75-2.06 4 0 4.7 2.6 4.7 6V21H19v-4.8c0-1.15 0-2.64-1.6-2.64-1.6 0-1.85 1.25-1.85 2.55V21H12Z"/></svg>
+                </span>
+                LinkedIn: vipulsai
+              </a>
+            </li>
+            <li>
+              <a href="https://leetcode.com/Vipulsai0" target="_blank" rel="noopener">
+                <span class="icon" aria-hidden="true">
+                  <!-- LeetCode-like SVG (generic code icon) -->
+                  <svg viewBox="0 0 24 24"><path d="M8.59 16.59 4 12l4.59-4.59L10 8.83 6.83 12 10 15.17l-1.41 1.42Zm6.82 0L14 15.17 17.17 12 14 8.83l1.41-1.42L20 12l-4.59 4.59Z"/></svg>
+                </span>
+                LeetCode: Vipulsai0
+              </a>
+            </li>
+            <li>
+              <a href="mailto:vipulsai19@gmail.com">
+                <span class="icon" aria-hidden="true">
+                  <!-- Email SVG -->
+                  <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+                </span>
+                Email: vipulsai19@gmail.com
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>Contact Details</h3>
+          <ul class="list">
+            <li>Email: <a href="mailto:vipulsai19@gmail.com">vipulsai19@gmail.com</a></li>
+            <li>Phone: <a href="tel:+918328509808">+91 83285 09808</a></li>
+            <li>Location: India (Open to remote internships and entry‑level roles)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:18px;">
+        <h3>What I Bring as a Fresher</h3>
+        <ul class="list">
+          <li>Positive attitude, punctual communication, and strong willingness to learn.</li>
+          <li>Comfortable taking feedback and iterating quickly.</li>
+          <li>Respectful collaboration and ownership of tasks.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div class="section-header">
+        <h2>Get In Touch</h2>
+        <div class="section-sub">Open to internships and entry‑level software roles</div>
+      </div>
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Reach Out</h3>
+          <p>Thank you for considering my profile. I’m excited to learn and contribute—happy to share code samples and discuss how I can support the team.</p>
+          <p>
+            <a class="btn primary" href="mailto:vipulsai19@gmail.com?subject=Opportunity%20for%20Internship%20or%20Entry-Level%20Role&body=Hi%20Vipulsai,%0D%0A%0D%0A">
+              <span class="icon" aria-hidden="true">
+                <!-- Email SVG -->
+                <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h16a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+              </span>
+              Email Vipulsai
+            </a>
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Quick Links</h3>
+          <div class="tags">
+            <a class="tag" href="#projects">Projects</a>
+            <a class="tag" href="#internships">Internships</a>
+            <a class="tag" href="#skills">Skills</a>
+            <a class="tag" href="#certs">Certifications</a>
+            <a class="tag" href="#profiles">Profiles</a>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px; font-size:12px; color:#9a9ab0;">© 2025 Vipulsai Atmakuri. All rights reserved.</div>
+    </div>
+  </footer>
+</body>
+</html>
