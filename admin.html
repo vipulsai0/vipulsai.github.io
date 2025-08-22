@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .panel {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      max-width: 600px;
+      margin: auto;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .logout {
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Panel</h1>
+  <div class="panel">
+    <label>Website Title</label>
+    <input type="text" id="siteTitle" placeholder="Enter site title">
+
+    <label>About Section Text</label>
+    <textarea id="aboutText" placeholder="Enter about section text"></textarea>
+
+    <label>Button 1 Link</label>
+    <input type="text" id="btn1Link" placeholder="Enter Button 1 URL">
+
+    <label>Button 2 Link</label>
+    <input type="text" id="btn2Link" placeholder="Enter Button 2 URL">
+
+    <button onclick="saveChanges()">Save Changes</button>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    // Load saved values
+    document.getElementById("siteTitle").value = localStorage.getItem("siteTitle") || "";
+    document.getElementById("aboutText").value = localStorage.getItem("aboutText") || "";
+    document.getElementById("btn1Link").value = localStorage.getItem("btn1Link") || "";
+    document.getElementById("btn2Link").value = localStorage.getItem("btn2Link") || "";
+
+    function saveChanges() {
+      localStorage.setItem("siteTitle", document.getElementById("siteTitle").value);
+      localStorage.setItem("aboutText", document.getElementById("aboutText").value);
+      localStorage.setItem("btn1Link", document.getElementById("btn1Link").value);
+      localStorage.setItem("btn2Link", document.getElementById("btn2Link").value);
+      alert("✅ Changes saved! They will appear next time you open the site.");
+    }
+
+    function logout() {
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
