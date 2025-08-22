@@ -499,9 +499,23 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
-  </script>
+
+// ✅ Load site content from Firestore
+db.collection("siteContent").doc("main").get().then((doc) => {
+  if (doc.exists) {
+    const data = doc.data();
+    if (data.title) document.getElementById("site-title").innerText = data.title;
+    if (data.role) document.getElementById("role-text").innerText = data.role;
+    if (data.about) document.getElementById("about-text").innerText = data.about;
+    if (data.mainButtonText) document.getElementById("main-button").innerText = data.mainButtonText;
+    if (data.mainButtonLink) document.getElementById("main-button").href = data.mainButtonLink;
+  }
+});
+</script>
 </body>
 </html>
+
+
 
 
 
