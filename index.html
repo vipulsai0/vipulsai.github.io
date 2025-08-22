@@ -486,39 +486,30 @@
       <div style="margin-top:16px; font-size:12px; color:#9a9ab0;">© 2025 Vipulsai Atmakuri. All rights reserved.</div>
     </div>
   </footer>
-    <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js"></script>
+  <!-- Firebase SDKs (Compat builds so we can use firebase.* globals) -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 
   <script>
-    // TODO: Replace with your Firebase config from console
+    // ✅ Your real Firebase config
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyBWrHbCUzrjJzq6NpapiYOx9pCp9r_IQz0",
+      authDomain: "portfolio-admin-7111.firebaseapp.com",
+      projectId: "portfolio-admin-7111",
+      storageBucket: "portfolio-admin-7111.firebasestorage.app",
+      messagingSenderId: "828894545878",
+      appId: "1:828894545878:web:48d3593dbfbd847935c677"
     };
 
     // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const auth = firebase.getAuth(app);
-    const db = firebase.getFirestore(app);
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
   </script>
-
-  <!-- Add Login link in navbar -->
-  <script>
-    // Add "Login" link dynamically
-    const navLinks = document.querySelector(".brand .links");
-    const loginLink = document.createElement("a");
-    loginLink.href = "login.html";
-    loginLink.textContent = "Login";
-    navLinks.appendChild(loginLink);
-  </script>
-
 </body>
 </html>
+
+
 
 
